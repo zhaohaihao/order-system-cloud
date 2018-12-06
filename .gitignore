@@ -89,3 +89,6 @@ buildNumber.properties
 .classpath
 .settings
 .metadata
+
+# person files
+/logs/
