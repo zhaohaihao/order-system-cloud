@@ -1,6 +1,7 @@
 package com.hilox.order.service;
 
 import com.hilox.order.HiloxOrderApplicationTests;
+import com.hilox.order.dto.CartDTO;
 import com.hilox.order.model.Product;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,10 +10,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zhh on 2018/12/14 0014.
+ * Created by Hilox on 2018/12/14 0014.
  */
 public class ProductServiceTest extends HiloxOrderApplicationTests {
 
@@ -52,4 +54,23 @@ public class ProductServiceTest extends HiloxOrderApplicationTests {
         productService.save(product);
     }
 
+    @Test
+    public void increaseStockTest() throws Exception {
+        List<CartDTO> cartDTOList = new ArrayList<>();
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setProductId("123456");
+        cartDTO.setProductQuantity(3);
+        cartDTOList.add(cartDTO);
+        productService.increaseStock(cartDTOList);
+    }
+
+    @Test
+    public void decreaseStockTest() throws Exception {
+        List<CartDTO> cartDTOList = new ArrayList<>();
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setProductId("123456");
+        cartDTO.setProductQuantity(3);
+        cartDTOList.add(cartDTO);
+        productService.decreaseStock(cartDTOList);
+    }
 }

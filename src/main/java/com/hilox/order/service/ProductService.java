@@ -1,6 +1,9 @@
 package com.hilox.order.service;
 
+import com.hilox.order.dto.CartDTO;
 import com.hilox.order.enums.ProductStateEnum;
+import com.hilox.order.enums.ResultEnum;
+import com.hilox.order.exception.SellException;
 import com.hilox.order.model.Product;
 import com.hilox.order.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +56,45 @@ public class ProductService {
      */
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    /**
+     * 加库存
+     * @param cartDTOList
+     */
+    public void increaseStock(List<CartDTO> cartDTOList) {
+
+        for (CartDTO cartDTO : cartDTOList) {
+            Product product = productRepository.findOne(cartDTO.getProductId());
+            if (product == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            int result = product.getStock() + cartDTO.getProductQuantity();
+            product.setStock(result);
+            productRepository.save(product);
+        }
+    }
+
+    /**
+     * 减库存
+     * @param cartDTOList
+     */
+    public void decreaseStock(List<CartDTO> cartDTOList) {
+
+        for (CartDTO cartDTO : cartDTOList) {
+            Product product = productRepository.findOne(cartDTO.getProductId());
+            if (product == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+
+            int result = product.getStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+
+            product.setStock(result);
+            productRepository.save(product);
+        }
     }
 }
