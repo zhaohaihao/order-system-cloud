@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -62,6 +63,7 @@ public class ProductService {
      * 加库存
      * @param cartDTOList
      */
+    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
 
         for (CartDTO cartDTO : cartDTOList) {
@@ -80,6 +82,7 @@ public class ProductService {
      * 减库存
      * @param cartDTOList
      */
+    @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
 
         for (CartDTO cartDTO : cartDTOList) {
