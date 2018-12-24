@@ -86,8 +86,8 @@ public class OrderService {
 
         // 3. 写入订单数据库(order_master和order_detail)
         OrderMaster orderMaster = new OrderMaster();
+        orderDTO.setId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMaster);
-        orderMaster.setId(orderId);
         orderMaster.setAmount(orderAmount);
         orderMaster.setState(OrderMasterStateEnum.NEW.getCode());
         orderMaster.setPayState(OrderMasterPayStateEnum.WAIT.getCode());

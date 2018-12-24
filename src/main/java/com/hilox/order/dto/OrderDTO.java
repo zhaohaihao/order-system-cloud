@@ -1,6 +1,8 @@
 package com.hilox.order.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hilox.order.model.OrderDetail;
+import com.hilox.order.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -11,6 +13,8 @@ import java.util.List;
  * Created by Hilox on 2018/12/21 0021.
  */
 @Data
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /** 订单id **/
@@ -38,9 +42,11 @@ public class OrderDTO {
     private Integer payState;
 
     /** 创建时间 **/
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 修改时间 **/
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
