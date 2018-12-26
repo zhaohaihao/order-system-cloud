@@ -7,7 +7,7 @@ import lombok.Getter;
  * Created by Hilox on 2018/12/20 0020.
  */
 @Getter
-public enum OrderMasterStateEnum {
+public enum OrderMasterStateEnum implements CodeEnum {
 
     NEW(0, "新订单"),
     FINISHED(1, "已完成"),

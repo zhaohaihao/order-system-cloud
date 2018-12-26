@@ -80,4 +80,11 @@ public class OrderServiceTest extends HiloxOrderApplicationTests {
         Assert.assertEquals(OrderMasterPayStateEnum.SUCCESS.getCode(), result.getPayState());
     }
 
+    @Test
+    public void findListPage() throws Exception {
+        Pageable pageable = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageable);
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
+    }
+
 }

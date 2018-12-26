@@ -7,7 +7,7 @@ import lombok.Getter;
  * Created by Hilox on 2018/12/20 0020.
  */
 @Getter
-public enum OrderMasterPayStateEnum {
+public enum OrderMasterPayStateEnum implements CodeEnum {
 
     WAIT(0, "未支付"),
     SUCCESS(1, "支付成功"),

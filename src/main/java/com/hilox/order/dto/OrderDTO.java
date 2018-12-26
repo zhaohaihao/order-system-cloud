@@ -1,7 +1,11 @@
 package com.hilox.order.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.hilox.order.enums.OrderMasterPayStateEnum;
+import com.hilox.order.enums.OrderMasterStateEnum;
 import com.hilox.order.model.OrderDetail;
+import com.hilox.order.utils.EnumUtil;
 import com.hilox.order.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -49,5 +53,15 @@ public class OrderDTO {
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
-    List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderMasterStateEnum getOrderMasterStateEnum() {
+        return EnumUtil.getByCode(state, OrderMasterStateEnum.class);
+    }
+
+    @JsonIgnore
+    public OrderMasterPayStateEnum getOrderMasterPayStateEnum() {
+        return EnumUtil.getByCode(payState, OrderMasterPayStateEnum.class);
+    }
 }

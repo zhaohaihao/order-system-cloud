@@ -45,6 +45,9 @@ public class OrderService {
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
+    @Autowired
+    private PayService payService;
+
     /**
      * 创建订单
      * @param orderDTO
@@ -132,7 +135,7 @@ public class OrderService {
         Page<OrderMaster> orderMasterPage = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
 
         List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
-        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 
     /**
@@ -177,7 +180,7 @@ public class OrderService {
 
         // 如果已支付, 需要退款
         if (orderDTO.getPayState() == OrderMasterPayStateEnum.SUCCESS.getCode()) {
-            // TODO
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
@@ -241,5 +244,17 @@ public class OrderService {
         }
 
         return orderDTO;
+    }
+
+    /**
+     * 分页查询订单列表
+     * @param pageable
+     * @return
+     */
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 }
