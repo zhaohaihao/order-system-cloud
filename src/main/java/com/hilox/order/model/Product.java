@@ -1,5 +1,8 @@
 package com.hilox.order.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hilox.order.enums.ProductStateEnum;
+import com.hilox.order.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -47,4 +50,9 @@ public class Product {
 
     /** 修改时间 **/
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStateEnum getProductStateEnum() {
+        return EnumUtil.getByCode(state, ProductStateEnum.class);
+    }
 }

@@ -100,4 +100,44 @@ public class ProductService {
             productRepository.save(product);
         }
     }
+
+    /**
+     * 商品上架
+     * @param productId 商品id
+     * @return
+     */
+    public Product onSale(String productId) {
+        Product product = productRepository.findOne(productId);
+        if (product == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (product.getProductStateEnum() == ProductStateEnum.UP) {
+            throw new SellException(ResultEnum.PRODUCT_STATE_ERROR);
+        }
+
+        // 更新
+        product.setState(ProductStateEnum.UP.getCode());
+        productRepository.save(product);
+        return product;
+    }
+
+    /**
+     * 商品下架
+     * @param productId 商品id
+     * @return
+     */
+    public Product offSale(String productId) {
+        Product product = productRepository.findOne(productId);
+        if (product == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (product.getProductStateEnum() == ProductStateEnum.DOWN) {
+            throw new SellException(ResultEnum.PRODUCT_STATE_ERROR);
+        }
+
+        // 更新
+        product.setState(ProductStateEnum.DOWN.getCode());
+        productRepository.save(product);
+        return product;
+    }
 }

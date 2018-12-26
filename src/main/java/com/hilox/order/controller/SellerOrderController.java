@@ -66,7 +66,7 @@ public class SellerOrderController {
         }
         map.put("msg", ResultEnum.ORDER_CANCEL_SUCCESS.getMessage());
         map.put("url", "hilox-order/seller/order/list");
-        return new ModelAndView("common/success");
+        return new ModelAndView("common/success", map);
     }
 
     /**
@@ -90,7 +90,7 @@ public class SellerOrderController {
         map.put("orderDTO", orderDTO);
         map.put("msg", ResultEnum.ORDER_CANCEL_SUCCESS.getMessage());
         map.put("url", "hilox-order/seller/order/list");
-        return new ModelAndView("common/success");
+        return new ModelAndView("common/success", map);
     }
 
     /**
@@ -115,6 +115,6 @@ public class SellerOrderController {
         map.put("orderDTO", orderDTO);
         map.put("msg", ResultEnum.ORDER_FINISH_SUCCESS.getMessage());
         map.put("url", "hilox-order/seller/order/list");
-        return new ModelAndView("order/detail");
+        return new ModelAndView("order/detail", map);
     }
 }
