@@ -9,11 +9,21 @@ spring:
     url: jdbc:mysql://127.0.0.1/hilox-order?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+  redis:
+    host: 127.0.0.1
+    post: 6379
 
 wechat:
   mpAppId: wsx856565323568
   mpAppSecret: wsx856565323568wsx856565323568aadddddd
+  openAppId: wsxxxxxxxxxxx
+  openAppSecret: wsxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   mchId: 1508888888
   mchKey: wsx856565323568wsx856565323568aadddddd
   keyPath: /xx/xx/xx.p12
   notifyUrl: http://xxxxxxxxxx
+
+projectUrl:
+  hilox: http://xxx
+  wechatMpAuthorizeUrl: http://xxx
+  wechatOpenAuthorizeUrl: http://xxx

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * 微信配置
+ * 微信公众平台配置
  * Created by Hilox on 2018/12/25 0025.
  */
 @Component
