@@ -22,6 +22,8 @@ wechat:
   mchKey: wsx856565323568wsx856565323568aadddddd
   keyPath: /xx/xx/xx.p12
   notifyUrl: http://xxxxxxxxxx
+  templateId:
+    orderStatus: wqeqweqdasddasdadwewewfgdbvcxzcxzv
 
 projectUrl:
   hilox: http://xxx

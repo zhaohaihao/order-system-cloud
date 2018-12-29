@@ -48,6 +48,9 @@ public class OrderService {
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private PushMessageService pushMessageService;
+
     /**
      * 创建订单
      * @param orderDTO
@@ -209,6 +212,9 @@ public class OrderService {
             log.error("【完结订单】更新失败, orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        // 推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }
