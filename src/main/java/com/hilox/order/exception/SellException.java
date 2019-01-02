@@ -1,10 +1,12 @@
 package com.hilox.order.exception;
 
 import com.hilox.order.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * Created by Hilox on 2018/12/21 0021.
  */
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;
