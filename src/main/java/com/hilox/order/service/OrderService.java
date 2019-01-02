@@ -51,6 +51,9 @@ public class OrderService {
     @Autowired
     private PushMessageService pushMessageService;
 
+    @Autowired
+    private WebSocket webSocket;
+
     /**
      * 创建订单
      * @param orderDTO
@@ -101,6 +104,9 @@ public class OrderService {
 
         // 4. 扣库存
         productService.decreaseStock(cartDTOList);
+
+        // 发送webSocket消息
+        webSocket.sendMessage(orderDTO.getId());
 
         return orderDTO;
     }
