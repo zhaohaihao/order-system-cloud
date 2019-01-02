@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Created by Hilox on 2018/12/6 0006.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
 public class HiloxOrderApplicationTests {
 

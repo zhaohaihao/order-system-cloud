@@ -29,3 +29,12 @@ projectUrl:
   hilox: http://xxx
   wechatMpAuthorizeUrl: http://xxx
   wechatOpenAuthorizeUrl: http://xxx
+
+logging:
+  level:
+   com.hilox.order.mapper: trace
+mybatis:
+  mapper-locations: classpath:/*.xml
+
+
+
