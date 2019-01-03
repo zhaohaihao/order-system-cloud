@@ -10,9 +10,11 @@ import com.hilox.order.vo.ProductVO;
 import com.hilox.order.vo.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -35,7 +37,8 @@ public class BuyerProductController {
 
     @GetMapping("/list")
     @ResponseBody
-    public ResultVO list() {
+    @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0") // cacheNames可以理解为前缀
+    public ResultVO list(@RequestParam("sellerId") String sellerId) {
         // 1. 查询所有上架的商品
         List<Product> productList = productService.findUpAll();
 

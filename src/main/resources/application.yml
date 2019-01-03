@@ -33,8 +33,8 @@ projectUrl:
 logging:
   level:
    com.hilox.order.mapper: trace
-mybatis:
-  mapper-locations: classpath:/*.xml
+#mybatis:
+#  mapper-locations: classpath:/*.xml
 
 
 

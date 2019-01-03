@@ -2,6 +2,7 @@ package com.hilox.order.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -9,7 +10,9 @@ import java.math.BigDecimal;
  * Created by Hilox on 2018/12/19 0019.
  */
 @Data
-public class ProductVO {
+public class ProductVO implements Serializable {
+
+    private static final long serialVersionUID = -6099547748790870169L;
 
     /** 商品id **/
     private String id;

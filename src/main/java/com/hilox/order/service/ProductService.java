@@ -19,6 +19,7 @@ import java.util.List;
  * Created by Hilox on 2018/12/14 0014.
  */
 @Service
+//@CacheConfig(cacheNames = "product")
 public class ProductService {
 
     @Autowired
@@ -29,6 +30,7 @@ public class ProductService {
      * @param productId 商品Id
      * @return
      */
+    //@Cacheable(key = "123")
     public Product findOne(String productId) {
         return productRepository.findOne(productId);
     }
@@ -55,6 +57,7 @@ public class ProductService {
      * @param product 商品信息
      * @return
      */
+    //@CachePut(key = "123")
     public Product save(Product product) {
         return productRepository.save(product);
     }
