@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: osc-config
+  cloud:
+    config:
+      server:
+        git:
+          # git仓库地址
+          uri: https://github.com/zhaohaihao/xxxx.git
+          username: # 你的用户名
+          password: # 你的密码
+          basedir: # 配置存放地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

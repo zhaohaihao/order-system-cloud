@@ -8,6 +8,17 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/order_system?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: osc-config
+      profile: dev
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
